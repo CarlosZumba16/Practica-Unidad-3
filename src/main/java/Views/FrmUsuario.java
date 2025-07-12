@@ -5,8 +5,8 @@
 package Views;
 
 import Controller.Utilidades;
-import Modelos_de_Tablas.Tabla_Laberinto;
 import Modelos_de_Tablas.Tabla_Unidad;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +25,6 @@ public class FrmUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         tbtTablaMatiz.setModel(tb);
-
     }
 
     /**
@@ -101,10 +100,10 @@ public class FrmUsuario extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tbtTablaMatiz);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 30, 750, 402);
+        jScrollPane1.setBounds(10, 30, 750, 340);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(50, 170, 770, 360);
+        jPanel2.setBounds(50, 170, 770, 390);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setText("Generar Matriz");
@@ -156,15 +155,19 @@ public class FrmUsuario extends javax.swing.JDialog {
         jButton3.setBounds(460, 630, 110, 30);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-10, 0, 880, 670);
+        jPanel1.setBounds(-10, 0, 870, 690);
 
-        setSize(new java.awt.Dimension(887, 681));
+        setSize(new java.awt.Dimension(874, 703));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Matriz = (u.ConstrutorMatriz((int) jSpinner1.getValue(), (int) jSpinner2.getValue()));
-        tb.setData(Matriz);
+        if (((int) jSpinner1.getValue() < 0) || ((int) jSpinner2.getValue() < 0)) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese numero mayor a cero", "Error ", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Matriz = (u.ConstrutorMatriz((int) jSpinner1.getValue(), (int) jSpinner2.getValue()));
+            tb.setData(Matriz);
+        }
 
 // for (int i = 0; i < ; i++) {
 //            tbtTablaMatiz.getColumnModel().getColumn(i).setPreferredWidth(15); 
@@ -173,15 +176,23 @@ public class FrmUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (!txtNumeros.getText().isEmpty()) {
+            Matriz = u.EliminarNumero(txtNumeros.getText(), Matriz);
+            tb.setData(Matriz);
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor querido Usuario escriba un numero ", "Error ", JOptionPane.ERROR_MESSAGE);
+        }
 
-        Matriz = u.EliminarNumero(txtNumeros.getText(), Matriz);
-        tb.setData(Matriz);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-Matriz = u.EliminarPrimos( Matriz);
-        tb.setData(Matriz);
+        if ((((int) jSpinner1.getValue() == 0) && ((int) jSpinner2.getValue() == 0))) {
+            JOptionPane.showMessageDialog(null, "Por favor primero genere la tabla ", "Error ", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Matriz = u.EliminarPrimos(Matriz);
+            tb.setData(Matriz);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 

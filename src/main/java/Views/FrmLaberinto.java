@@ -90,7 +90,7 @@ public class FrmLaberinto extends javax.swing.JDialog {
         jPanel2.add(jScrollPane2);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 140, 840, 450);
+        jPanel2.setBounds(10, 140, 920, 480);
 
         jButton1.setText("Generar Laberinto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class FrmLaberinto extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(350, 590, 160, 40);
+        jButton1.setBounds(330, 630, 160, 40);
 
         jPanel3.setLayout(null);
 
@@ -152,12 +152,13 @@ public class FrmLaberinto extends javax.swing.JDialog {
         jLabel2.setBounds(10, 20, 140, 16);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 900, 640);
+        jPanel1.setBounds(0, 0, 940, 700);
 
-        setSize(new java.awt.Dimension(921, 654));
+        setSize(new java.awt.Dimension(962, 726));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:

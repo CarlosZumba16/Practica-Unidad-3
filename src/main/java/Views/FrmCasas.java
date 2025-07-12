@@ -16,6 +16,7 @@ public class FrmCasas extends javax.swing.JDialog {
     public FrmCasas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**

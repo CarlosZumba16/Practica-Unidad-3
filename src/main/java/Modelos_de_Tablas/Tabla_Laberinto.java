@@ -4,7 +4,6 @@
  */
 package Modelos_de_Tablas;
 
-import java.util.Random;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -37,11 +36,12 @@ public class Tabla_Laberinto extends AbstractTableModel {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return data[rowIndex][columnIndex];
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    
+
     }
+
     @Override
- public boolean isCellEditable(int rowIndex, int columnIndex){
-     return false;
- }   
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+    }
 
 }
