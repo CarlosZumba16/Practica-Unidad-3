@@ -100,10 +100,10 @@ public class FrmUsuario extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tbtTablaMatiz);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 30, 750, 340);
+        jScrollPane1.setBounds(10, 30, 890, 340);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(50, 170, 770, 390);
+        jPanel2.setBounds(50, 170, 910, 380);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setText("Generar Matriz");
@@ -155,9 +155,9 @@ public class FrmUsuario extends javax.swing.JDialog {
         jButton3.setBounds(460, 630, 110, 30);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-10, 0, 870, 690);
+        jPanel1.setBounds(-10, 0, 1000, 700);
 
-        setSize(new java.awt.Dimension(874, 703));
+        setSize(new java.awt.Dimension(1006, 711));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

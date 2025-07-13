@@ -4,20 +4,54 @@
  */
 package Views;
 
+import Controller.Utilidades;
+import Controller.Utilidadescas;
+import Modelos_de_Tablas.Casa;
+import Modelos_de_Tablas.Tabla_Casas;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Carlos Zumba
  */
 public class FrmCasas extends javax.swing.JDialog {
-
+Utilidades u = new Utilidades();
+    Utilidadescas uc=new Utilidadescas();
+    Tabla_Casas tl = new Tabla_Casas();
+    double porcentaje;
+    private DefaultTableModel modeloTablaCasas; // Declaración como campo
+    private JTable tablaCasas;
     /**
      * Creates new form FrmCasas
      */
     public FrmCasas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+         String[] columnas = {"Nº", "Dimensiones y Pisos", "Homónimas"};
+    modeloTablaCasas = new DefaultTableModel(columnas, 0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+        @Override
+        public void addRow(Object[] rowData) {
+            if (getRowCount() >= 10) {
+                removeRow(0);
+            }
+            super.addRow(rowData);
+        }
+    };   
+    tablaCasas = new JTable(modeloTablaCasas);
+    tablaCasas.setRowHeight(20);
+    javax.swing.JScrollPane scrollPaneCasas = new javax.swing.JScrollPane(tablaCasas);
+    scrollPaneCasas.setBounds(600, 180, 250, 150);
+    .add(scrollPaneCasas);
+    //10, 40, 600, 400
+    // Ajustar jPanel2 a layout absoluto y tamaño
+    jPanel2.setLayout(null);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,10 +64,10 @@ public class FrmCasas extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -46,8 +80,15 @@ public class FrmCasas extends javax.swing.JDialog {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(250, 30, 350, 30);
 
-        jPanel2.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la Casa"));
+        jButton1.setText("GENERAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(630, 60, 110, 30);
+
         jPanel2.setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -64,14 +105,10 @@ public class FrmCasas extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(122, 10, 480, 430);
+        jScrollPane1.setBounds(10, 20, 452, 402);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(40, 100, 780, 520);
-
-        jButton1.setText("GENERAR");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(630, 60, 110, 30);
+        jPanel2.setBounds(40, 110, 770, 490);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 860, 650);
@@ -79,6 +116,18 @@ public class FrmCasas extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(879, 654));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+Casa nuevaCasa = new Casa(Val, Val); 
+        uc.guardarCasa(nuevaCasa);
+        // guarda la casa generada (probablemente en una estructura interna, 
+        int grupo = uc.getGrupoHomonimas(uc.getContador() - 1);        
+        modeloTablaCasas.addRow(new Object[]{uc.getContador(), nuevaCasa.toString(), grupo});
+        Datos.guardarDato(uc.getContador(), nuevaCasa.toString(), grupo);
+        //guardando las casas en una estructura interna (como un arreglo) para comparaciones de homonimias.
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
